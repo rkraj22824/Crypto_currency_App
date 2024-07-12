@@ -26,7 +26,8 @@ fun CoinTag(
             )
             .padding(10.dp)
     ) {
-        Text(text = tag,
+        Text(
+            text = tag,
             textAlign = TextAlign.Center
         )
     }

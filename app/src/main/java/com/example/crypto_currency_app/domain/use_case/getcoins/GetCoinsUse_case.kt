@@ -3,6 +3,7 @@ package com.example.crypto_currency_app.domain.use_case.getcoins
 import com.example.crypto_currency_app.common.Resource
 import com.example.crypto_currency_app.data.remote.dto.toCoin
 import com.example.crypto_currency_app.domain.model.Coin
+import com.example.crypto_currency_app.domain.model.CoinDetail
 import com.example.crypto_currency_app.domain.repository.CoinRepository
 import kotlinx.coroutines.flow.flow
 import okio.IOException
@@ -15,13 +16,13 @@ class GetCoinsUse_case @Inject constructor(
 ) {
     operator fun invoke() = flow {
         try {
-            emit(Resource.Loading())
+            emit(Resource.Loading<List<Coin>>())
             val coins = repository.getCoins().map { it.toCoin() }
-            emit(Resource.Success(coins))
+            emit(Resource.Success<List<Coin>>(coins))
         } catch (e: HttpRetryException) {
-            emit(Resource.Error(e.localizedMessage ?: "An unexpected Error occured"))
+            emit(Resource.Error<List<Coin>>(e.localizedMessage ?: "An unexpected Error occured"))
         } catch (e: IOException) {
-            emit(Resource.Error("Please check your internet Connection"))
+            emit(Resource.Error<List<Coin>>("Please check your internet Connection"))
         }
     }
 

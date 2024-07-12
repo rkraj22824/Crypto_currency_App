@@ -34,7 +34,7 @@ fun CoinListItem(
             overflow = TextOverflow.Ellipsis
         )
         Text(text =if(coin.is_active) "active" else "inactive",
-            color = if(coin.is_active) Color.Green else Color.Red,
+            color = if(coin.is_active) Color.Cyan else Color.Red,
             fontStyle = androidx.compose.ui.text.font.FontStyle.Italic,
             textAlign = TextAlign.End,
             modifier = Modifier.align(CenterVertically)
